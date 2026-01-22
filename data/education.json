@@ -1,0 +1,28 @@
+{
+    "education": [
+        {
+            "title": "Electrical Power Engineering",
+            "location": "Thanlyin Technological University",
+            "years": "2017 - 2021",
+            "description": "I studied Electrical Engineering for three years, where I developed strong analytical and problem-solving skills. This technical foundation has enhanced my ability to approach challenges in web development with a systematic mindset."
+        },
+        {
+            "title": "NCC Level 4 Diploma In Computing",
+            "location": "KMD Institute",
+            "years": "2022 - 2023",
+            "description": "I completed an NCC Level 4 Diploma, where I gained a solid foundation in front-end development, including HTML, CSS, and JavaScript. This program equipped me with essential programming knowledge and practical skills"
+        },
+        {
+            "title": "NCC Level 5 Diploma In Computing",
+            "location": "KMD Institute",
+            "years": "2023 - 2024",
+            "description": " I completed an NCC Level 5 Diploma, where I gained a solid foundation in backend development, focusing on PHP, Laravel, and database management. This program equipped me with the skills to create dynamic, data-driven websites, enhancing my ability to deliver robust web applications."
+        },
+        {
+            "title": "B.Sc (Hons) Computing",
+            "location": "KMD Institute",
+            "years": "2024 - 2025",
+            "description": "I completed the Bacher degree in Computing, where I gained knowledge and developed Android applications, Movie Ticket Booking System, and a web-based group project. This program equipped me with the skills to coorporate with team members, enhancing my ability to deliver robust web applications."
+        }
+    ]
+}

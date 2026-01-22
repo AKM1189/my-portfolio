@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: oklch(58.5% 0.233 277.117);
+  --color-secondary: #dedede;
+    --bg-gradient-light: linear-gradient(
+    75deg,
+    rgba(79,70,229,1) 22%,
+    rgba(252,252,252,1) 22%
+  );
+
+  --bg-gradient-dark: linear-gradient(
+    75deg,
+    rgba(79,70,229,1) 22%,
+    rgba(0,0,0,1) 22%
+  );
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+.nav ul li {
+  @apply font-semibold text-gray-500 hover:text-indigo-600 cursor-pointer p-3;
+}
+
+.info-name {
+  @apply font-semibold text-gray-500;
+}
+
+.info-value {
+  @apply text-gray-600 ms-2;
+}
+
+.title {
+  @apply sm:text-5xl text-3xl font-bold text-gray-600 uppercase text-center mb-20;
+}
+
+.title-sm {
+  @apply text-3xl text-center text-gray-600 font-bold uppercase;
+}
+
+.side-title {
+  @apply text-xl sm:text-2xl mb-10 text-gray-600 font-bold uppercase;
+}
+
+.duration {
+  @apply text-sm font-bold text-gray-400 px-2 py-1 ms-2 rounded-full bg-gray-100 inline;
+}
+
+.degree-name {
+  @apply text-xl font-bold text-gray-600 uppercase mb-2;
+}
+
+.university {
+  @apply text-lg font-semibold mb-3 text-gray-600;
+}
+
+.label-style {
+  @apply font-semibold sm:text-lg text-base text-gray-500;
+}
+
+.input-style {
+  @apply rounded-md text-sm sm:text-base w-full bg-gray-100 shadow-sm p-3 mt-1 focus:outline-none focus:ring focus:border-indigo-600;
+}

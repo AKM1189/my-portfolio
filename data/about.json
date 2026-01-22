@@ -1,0 +1,32 @@
+{
+    "about": [
+        {
+            "label": "Name",
+            "value": "Aung Kaung Myat"
+        },
+        {
+            "label": "Date of Birth",
+            "value": "09 June 2001"
+        },
+        {
+            "label": "Language",
+            "value": "Myanmar, English"
+        },
+        {
+            "label": "Phone",
+            "value": "09756042421"
+        },
+        {
+            "label": "Email",
+            "value": "akm.dev.me@gmail.com"
+        },
+        {
+            "label": "Address",
+            "value": "Yangon, Myanmar"
+        },
+        {
+            "label": "Experience",
+            "value": 2
+        }
+    ]
+}

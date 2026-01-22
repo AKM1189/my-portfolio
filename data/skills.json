@@ -1,0 +1,40 @@
+{
+    "skills": [
+        {
+            "name": "HTML/CSS/Tailwind",
+            "level": 100
+        },
+         {
+            "name": "JavaScript/jquery/TypeScript",
+            "level": 90
+        },
+         {
+            "name": "React/Next",
+            "level": 90
+        },
+        {
+            "name": "AntDesign/Mantine/Shadcn",
+            "level": 100
+        },
+        {
+            "name": "Redux/Zustand/TanStack Query",
+            "level": 90
+        },
+         {
+            "name": "SQL/MongoDB",
+            "level": 90
+        },
+         {
+            "name": "Node/Express/Nest",
+            "level": 85
+        },
+        {
+            "name": "PHP/Laravel",
+            "level": 80
+        },
+         {
+            "name": "Git/GitHub",
+            "level": 90
+        }
+    ]
+}
