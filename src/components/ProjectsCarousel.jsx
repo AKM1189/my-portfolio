@@ -1,32 +1,34 @@
-import { Carousel } from '@mantine/carousel';
-import { Card, Image, Text, Button, Group, Modal, Stack, Badge } from '@mantine/core';
-import { useRef } from 'react';
-import Autoplay from 'embla-carousel-autoplay';
-import { useDisclosure } from '@mantine/hooks';
+import { Carousel } from "@mantine/carousel";
+import { Image, Text, Button, Group, Modal, Stack, Badge } from "@mantine/core";
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
+import { useDisclosure } from "@mantine/hooks";
+import { FaArrowUpRightFromSquare, FaGithub } from "react-icons/fa6";
 
 function ProjectsCarousel({ projects }) {
-  const autoplay = useRef(Autoplay({ delay: 3000 }));
+  const autoplay = useRef(Autoplay({ delay: 4000 }));
 
   return (
     <Carousel
-      slideSize="33.33%"
-      slideGap="md"
+      slideSize={{ base: "100%", sm: "50%", md: "33.33%" }}
+      slideGap="lg"
       align="start"
       slidesToScroll={1}
       loop
       classNames={{
-        indicators: '-mb-14',
-        indicator: 'bg-gray-200! data-[active=true]:bg-primary! h-1!',
-        control: "-ms-20 -me-20 size-10",
-        viewport: 'flex items-stretch',
-        container: 'flex items-stretch',
+        indicators: "mb-4",
+        indicator: "!w-2 !h-2 !rounded-full !bg-slate-200 data-[active=true]:!bg-primary data-[active=true]:!w-8 !transition-all",
+        control:
+          "!border-0 !bg-white !text-slate-700 !shadow-lg hover:!bg-primary hover:!text-white !transition-colors",
+        viewport: "overflow-visible",
+        container: "items-stretch",
       }}
       plugins={[autoplay.current]}
       onMouseEnter={autoplay.current.stop}
       onMouseLeave={() => autoplay.current.play()}
     >
       {projects.map((project, index) => (
-        <Carousel.Slide key={index} className='flex'>
+        <Carousel.Slide key={index} className="py-4">
           <ProjectCard project={project} />
         </Carousel.Slide>
       ))}
@@ -36,115 +38,147 @@ function ProjectsCarousel({ projects }) {
 
 function ProjectCard({ project }) {
   const [opened, { open, close }] = useDisclosure(false);
+  const techList = project.technologies.split(",").map((t) => t.trim()).slice(0, 3);
 
   return (
     <>
-      <Card
-        shadow="sm"
-        padding="lg"
-        radius="md"
-        withBorder
-        className='flex flex-col w-full'
-        h={'100%'}
+      <article
+        className="group relative h-full flex flex-col bg-white rounded-2xl border border-slate-100 shadow-lg overflow-hidden hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300"
+        onClick={open}
       >
-        <Card.Section>
+        {/* Image section */}
+        <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={project.image}
-            height={200}
             alt={project.title}
+            className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700"
           />
-        </Card.Section>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+          <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+            <div className="flex gap-2 flex-wrap">
+              {techList.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-2.5 py-1 text-xs font-medium bg-white/90 text-slate-700 rounded-lg backdrop-blur-sm"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-300">
+            <FaArrowUpRightFromSquare className="text-primary text-sm" />
+          </div>
+        </div>
 
-        <Group justify="space-between" mt="md" mb="xs">
-          <Text fw={600} size='lg'>{project.title}</Text>
-        </Group>
-
-        <div className='grow'>
-          <Text size="sm" c="dimmed">
-            {project.description.slice(0, 200)}
-            {project.description.length > 200 && (
-              <>
-                ...
-              </>
+        {/* Content section */}
+        <div className="flex flex-col flex-1 p-6">
+          <h3 className="text-lg font-bold text-slate-800 mb-2 group-hover:text-primary transition-colors">
+            {project.title}
+          </h3>
+          <p className="text-slate-600 text-sm leading-relaxed flex-1 line-clamp-2 mb-4">
+            {project.description}
+          </p>
+          <div className="flex gap-2">
+            {project.githubLink && (
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary border border-slate-200 rounded-lg hover:border-primary/30 transition-colors"
+              >
+                <FaGithub className="text-base" />
+                Code
+              </a>
             )}
-          </Text>
+            {project.previewLink && (
+              <a
+                href={project.previewLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                <FaArrowUpRightFromSquare className="text-sm" />
+                Live
+              </a>
+            )}
+          </div>
         </div>
-        <div className='flex justify-end gap-3 mt-4'>
-          <Button
-            variant="outline"
-            component="a"
-            className='border-primary! text-primary!'
-            radius={'md'}
-            size='sm'
-            onClick={open}
-          >
-            Detail
-          </Button>
-        </div>
+      </article>
 
-      </Card>
-
-      {/* User-Friendly Detailed Modal */}
       <Modal
         opened={opened}
         onClose={close}
-        title={<Text fw={700} size="lg">{project.title}</Text>}
+        title={
+          <Text fw={700} size="lg" className="text-slate-800">
+            {project.title}
+          </Text>
+        }
         centered
         size="lg"
-        radius="md"
+        radius="xl"
         padding="xl"
+        classNames={{
+          content: "border border-slate-100 shadow-2xl",
+          header: "border-b border-slate-100",
+        }}
       >
-        <Stack>
-          <Card withBorder p={0} radius={'md'}>
-            <Image
-              src={project.image}
-              alt={project.title}
-              maxHeight={300}
-            />
-          </Card>
+        <Stack gap="lg">
+          <div className="rounded-xl overflow-hidden border border-slate-100">
+            <Image src={project.image} alt={project.title} className="object-cover" h={220} />
+          </div>
 
           <div>
-            <Text fw={600} mb={5}>About the Project</Text>
-            <Text size="sm" c="dimmed" style={{ lineHeight: 1.6 }}>
+            <Text fw={600} mb="xs" className="text-slate-800">
+              About the Project
+            </Text>
+            <Text size="sm" c="dimmed" style={{ lineHeight: 1.7 }}>
               {project.description}
             </Text>
           </div>
 
           <div>
-            <Text fw={600} mb={5}>Technologies Used</Text>
-            <Group gap="xs" mt={10}>
-              {project.technologies.split(',').map((tech) => (
-                <Badge key={tech} variant="light" color="var(--color-primary)">
+            <Text fw={600} mb="xs" className="text-slate-800">
+              Technologies
+            </Text>
+            <Group gap="xs">
+              {project.technologies.split(",").map((tech) => (
+                <Badge key={tech} variant="light" color="teal" size="lg" className="font-medium">
                   {tech.trim()}
                 </Badge>
               ))}
             </Group>
           </div>
 
-          <div className='flex justify-end gap-3 mt-4'>
-            {project.githibLink && <Button
-              variant="outline"
-              component="a"
-              href={project.githubLink}
-              className='border-primary! text-primary!'
-              target='_blank'
-              size='sm'
-              radius={'md'}
-            >
-              GitHub
-            </Button>}
-
-            {project.previewLink && <Button
-              component="a"
-              href={project.previewLink}
-              className='bg-primary!'
-              target='_blank'
-              size='sm'
-              radius={'md'}
-            >
-              Preview
-            </Button>}
-          </div>
+          <Group justify="flex-end" gap="sm" mt="md">
+            {project.githubLink && (
+              <Button
+                variant="outline"
+                component="a"
+                href={project.githubLink}
+                target="_blank"
+                size="sm"
+                radius="md"
+                className="border-primary text-primary hover:bg-primary hover:text-white"
+              >
+                GitHub
+              </Button>
+            )}
+            {project.previewLink && (
+              <Button
+                component="a"
+                href={project.previewLink}
+                target="_blank"
+                size="sm"
+                radius="md"
+                className="bg-primary hover:bg-primary-dark"
+              >
+                Live Preview
+              </Button>
+            )}
+          </Group>
         </Stack>
       </Modal>
     </>

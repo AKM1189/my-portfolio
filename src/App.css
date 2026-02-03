@@ -1,8 +1,7 @@
-.sticky-header {
-  position: sticky;
-  top: 0; /* Sticks to the top of the viewport */
-  z-index: 1000; /* Ensures the header is on top of other content */
-  /* Add other styling like background, padding, etc. */
-  /* background-color: #fff; */
-  padding: 10px 0;
+/* App-specific styles */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
 }

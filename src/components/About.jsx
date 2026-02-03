@@ -1,58 +1,38 @@
-
-import data from "./../../data/about.json";
+import data from "../../data/about.json";
 
 const About = () => {
-  const {about} = data;
-  const experience = about.filter(item => item.label === "Experience")[0].value;
+  const { about } = data;
+  const experience = about.filter((item) => item.label === "Experience")[0]?.value ?? 0;
+  const personalInfo = about.filter((item) => item.label !== "Experience");
+
   return (
-    <section id="about-me" className="mt-10 mb-32">
-      <div className="pt-28">
-        <h3 className="title text-center">
-          ABOUT <span className="text-indigo-600">ME</span>
-        </h3>
+    <section id="about-me" className="pt-24 pb-20">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="title">
+          About <span className="gradient-text">Me</span>
+        </h2>
 
-        {/* <div className="flex justify-center mt-12"> */}
-          <div className="w-full">
-            <h3 className="side-title mb-10">Personal Information</h3>
+        <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 p-8 md:p-12 border border-slate-100">
+          <h3 className="side-title text-lg mb-8">Personal Information</h3>
 
-            {/* <div className="md:grid md:grid-cols-3 gap-40 sm:text-lg text-base"> */}
-            <div className="flex justify-between">
-              {/* Left */}
-              <div className="space-y-5">
-                {about.map((item, index) => {
-                  if(index < 3) {
-                    return  <InfoItem
-                    key={item.label}
-                    label={item.label}
-                    value={item.value}
-                  />
-                  }
-                })}
-              </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {personalInfo.slice(0, 6).map((item) => (
+              <InfoItem key={item.label} label={item.label} value={item.value} />
+            ))}
+          </div>
 
-              {/* Right */}
-              <div className="space-y-5">
-                {about.map((item, index) => {
-                  if(index >= 3 && index < 6) {
-                    return  <InfoItem
-                    key={item.label}
-                    label={item.label}
-                    value={item.value}
-                  />
-                  }
-                })}
+          <div className="mt-12 pt-8 border-t border-slate-100">
+            <div className="flex items-center gap-6">
+              <div className="flex-shrink-0 w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-teal-600 flex items-center justify-center shadow-lg shadow-primary/30">
+                <span className="text-4xl font-bold text-white">{experience}+</span>
               </div>
-               {/* Experience */}
-            <div className="text-lg">
-              <p className="info-name">Experience</p>
-              <div className="flex items-end gap-2 ps-10">
-                <h3 className="text-8xl font-bold text-indigo-600">{experience}</h3>
-                <span className="info-name">years</span>
+              <div>
+                <p className="text-2xl font-bold text-slate-800">Years of Experience</p>
+                <p className="text-slate-500 mt-1">Building web applications and growing with technology</p>
               </div>
-            </div>
             </div>
           </div>
-        {/* </div> */}
+        </div>
       </div>
     </section>
   );
@@ -62,9 +42,9 @@ export default About;
 
 const InfoItem = ({ label, value }) => {
   return (
-    <p className="text-lg">
-      <span className="info-name">{label}: </span>
-      <b className="info-value">{value}</b>
-    </p>
+    <div className="flex flex-col gap-1">
+      <span className="info-name text-sm">{label}</span>
+      <span className="info-value font-medium text-slate-800">{value}</span>
+    </div>
   );
 };

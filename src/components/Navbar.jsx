@@ -1,50 +1,78 @@
 import React, { useState } from "react";
+import { IoClose } from "react-icons/io5";
 
-const Navbar = ({onNavClick}) => {
+const Navbar = ({ onNavClick, scrolled }) => {
   const [open, setOpen] = useState(false);
-  const menus = ["Home", "About", "Skills", "Services", "Projects", "Contact"];
+  const menus = ["Home", "About", "Education", "Skills", "Services", "Projects", "Contact"];
+
+  const handleNavClick = (item) => {
+    const section = item.toLowerCase();
+    if (section === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      onNavClick(section);
+    }
+    setOpen(false);
+  };
 
   return (
-    <div className="nav h-20 mb-20 transition-all duration-500 ">
-      <nav className="hidden md:flex justify-end items-center me-10 p-3 pe-0">
-        <ul className="flex gap-5 me-10 text-lg *:p-3">
-          <nav className="flex gap-10 p-5">
-            {menus.map((item, index) => 
-              <button className="hover:text-primary transition-colors duration-200 cursor-pointer" key={index} onClick={() => onNavClick(item.toLocaleLowerCase())}>{item}</button>
-            )}
-        </nav>
-        </ul>
-      </nav>
+    <nav className="h-16 md:h-20 flex justify-end items-center px-6 md:px-12 lg:px-20">
+      <ul className="hidden md:flex items-center gap-1">
+        {menus.map((item) => (
+          <li key={item}>
+            <button
+              className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                scrolled
+                  ? "text-slate-700 hover:text-primary hover:bg-primary/5"
+                  : "text-slate-200 hover:text-white hover:bg-white/10"
+              }`}
+              onClick={() => handleNavClick(item)}
+            >
+              {item}
+            </button>
+          </li>
+        ))}
+      </ul>
 
       {/* Hamburger for mobile */}
-      <div className="md:hidden text-right me-12 pt-10">
-        <i
-          className="fa-solid fa-bars text-2xl cursor-pointer"
-          onClick={() => setOpen(true)}
-        ></i>
-      </div>
+      <button
+        className={`md:hidden p-2 -mr-2 rounded-lg transition-colors ${
+          scrolled
+            ? "text-slate-700 hover:bg-slate-100"
+            : "text-white hover:bg-white/10"
+        }`}
+        onClick={() => setOpen(true)}
+        aria-label="Open menu"
+      >
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
 
       {/* Mobile Menu */}
       {open && (
-        <div className="res-navigation fixed top-0 left-0 w-full h-full bg-gray-600 bg-opacity-90 z-20 text-center text-white font-semibold pt-5 overflow-auto">
-          <div
-            className="close text-right me-10 text-5xl cursor-pointer"
-            onClick={() => setOpen(false)}
-          >
-            &times;
-          </div>
-          <ul className="gap-5 me-10 text-2xl">
-            {["Home", "About", "Skills", "Projects", "Contact"].map((item) => (
-              <li className="p-5" key={item}>
-                <a className="nav-menu" href={`#${item.toLowerCase()}`} onClick={() => setOpen(false)}>
-                  {item}
-                </a>
-              </li>
+        <div className="fixed inset-0 z-50 bg-slate-900/95 backdrop-blur-sm">
+          <div className="flex flex-col items-center justify-center min-h-screen gap-6 p-8">
+            <button
+              className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-colors text-2xl"
+              onClick={() => setOpen(false)}
+              aria-label="Close menu"
+            >
+              <IoClose color="white" size={24} />
+            </button>
+            {menus.map((item) => (
+              <button
+                key={item}
+                className="text-2xl font-semibold text-white hover:text-primary transition-colors py-2"
+                onClick={() => handleNavClick(item)}
+              >
+                {item}
+              </button>
             ))}
-          </ul>
+          </div>
         </div>
       )}
-    </div>
+    </nav>
   );
 };
 

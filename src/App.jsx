@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 
-import { Badge, MantineProvider } from '@mantine/core';
+import { MantineProvider } from '@mantine/core';
 
 import "./App.css";
 import Education from "./components/Education";
@@ -33,68 +33,85 @@ export default function App() {
 
   return (
     <MantineProvider>
-      <div className="bg-white text-black scroll-smooth">
-      <section className="h-svh bg-[linear-gradient(75deg,rgba(79,70,229,1)_22%,rgba(252,252,252,1)_22%)]">
-        <div className="">
-          <Navbar onNavClick={scrollToSection} />
+      <div className="bg-slate-50 text-slate-900 scroll-smooth font-[family-name:var(--font-sans)]">
+        {/* Fixed navbar - outside hero so it stays viewport-fixed on mobile */}
+        <div
+          className={twMerge(
+            "w-screen transition-all duration-500 fixed top-0 left-0 z-50",
+            scroll.y > 300
+              ? "bg-white/95 shadow-lg border-b border-slate-200"
+              : "bg-transparent"
+          )}
+        >
+          <Navbar onNavClick={scrollToSection} scrolled={scroll.y > 300} />
         </div>
 
-         <div className={twMerge(
-          'w-screen  h-20 transition-all duration-500 fixed z-100',
-          scroll.y> 300 ? ' bg-white top-0 left-0 shadow-md': '-top-32'
-         )}>
-          <Navbar onNavClick={scrollToSection} />
-        </div>
+        {/* Hero section with gradient background */}
+        <section className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 relative overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute -top-40 -right-40 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl" />
+            <div className="absolute top-1/2 -left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 right-1/3 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl" />
+          </div>
 
-        <section ref={(el) => (sectionRefs.current.hero = el)}>
-          <Hero onAboutClick={() => scrollToSection('about')}/>
+          <div className="relative z-10">
+            <section ref={(el) => (sectionRefs.current.hero = el)}>
+              <Hero onAboutClick={() => scrollToSection("about")} />
+            </section>
+          </div>
         </section>
-      </section>
 
+        {/* Content sections */}
+        <section className="lg:px-24 md:px-16 px-6">
+          <Fade>
+            <section ref={(el) => (sectionRefs.current.about = el)}>
+              <About />
+            </section>
+          </Fade>
 
-     <section className="lg:px-32 md:px-20 px-10">
-       <Fade>
-        <section ref={(el) => (sectionRefs.current.about = el)}>
-        <About />
-      </section>
-       </Fade>
+          <section ref={(el) => (sectionRefs.current.education = el)}>
+            <Fade>
+              <Education />
+            </Fade>
+          </section>
 
-       <section ref={(el) => (sectionRefs.current.education = el)}>
-        <Fade>
-          <Education />
-        </Fade>
-      </section>
+          <section ref={(el) => (sectionRefs.current.skills = el)}>
+            <Fade>
+              <Skills />
+            </Fade>
+          </section>
 
-      <section ref={(el) => (sectionRefs.current.skills = el)}>
-      <Fade>
-          <Skills />
-      </Fade>
-      </section>
+          <section ref={(el) => (sectionRefs.current.services = el)}>
+            <Fade>
+              <Services />
+            </Fade>
+          </section>
 
-      <section ref={(el) => (sectionRefs.current.services = el)}>
-        <Fade>
-          <Services />
-        </Fade>
-      </section>
+          <section ref={(el) => (sectionRefs.current.projects = el)}>
+            <Fade>
+              <Projects />
+            </Fade>
+          </section>
 
-      <section ref={(el) => (sectionRefs.current.projects = el)}>
-       <Fade>
-         <Projects />
-       </Fade>
-      </section>
-      <section ref={(el) => (sectionRefs.current.contact = el)}>
-       <Fade>
-         <Contact />
-       </Fade>
-      </section>
-     </section>
+          <section ref={(el) => (sectionRefs.current.contact = el)}>
+            <Fade>
+              <Contact />
+            </Fade>
+          </section>
+        </section>
 
+        <Footer />
 
-      <Footer />
-
-      <div className="w-10 h-10 fixed z-100 right-10 bottom-10 flex items-center justify-center bg-primary rounded-full"
-      onClick={() => scrollTo({y: 0})}><FaArrowUp size={20} color="white"/></div>
-    </div>
+        {/* Back to top button */}
+        <button
+          className="fixed z-40 right-6 bottom-6 w-12 h-12 flex items-center justify-center bg-primary hover:bg-primary-dark rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+          onClick={() => scrollTo({ y: 0 })}
+          aria-label="Back to top"
+        >
+          <FaArrowUp size={20} color="white" />
+        </button>
+      </div>
     </MantineProvider>
   );
 }

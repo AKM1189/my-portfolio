@@ -1,66 +1,109 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: oklch(58.5% 0.233 277.117);
-  --color-secondary: #dedede;
-    --bg-gradient-light: linear-gradient(
-    75deg,
-    rgba(79,70,229,1) 22%,
-    rgba(252,252,252,1) 22%
+  --color-primary: #0d9488;
+  --color-primary-light: #14b8a6;
+  --color-primary-dark: #0f766e;
+  --color-accent: #f59e0b;
+  --color-accent-light: #fbbf24;
+  --color-secondary: #e2e8f0;
+  --bg-gradient-hero: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #1e293b 40%,
+    #0d9488 100%
   );
-
-  --bg-gradient-dark: linear-gradient(
-    75deg,
-    rgba(79,70,229,1) 22%,
-    rgba(0,0,0,1) 22%
+  --bg-gradient-subtle: linear-gradient(
+    180deg,
+    #f8fafc 0%,
+    #f1f5f9 100%
   );
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 }
-
 
 html {
   scroll-behavior: smooth;
 }
 
+body {
+  font-family: var(--font-sans);
+}
+
 .nav ul li {
-  @apply font-semibold text-gray-500 hover:text-indigo-600 cursor-pointer p-3;
+  @apply font-semibold text-slate-500 hover:text-primary cursor-pointer p-3 transition-colors;
 }
 
 .info-name {
-  @apply font-semibold text-gray-500;
+  @apply font-semibold text-slate-500;
 }
 
 .info-value {
-  @apply text-gray-600 ms-2;
+  @apply text-slate-700 ms-2;
 }
 
 .title {
-  @apply sm:text-5xl text-3xl font-bold text-gray-600 uppercase text-center mb-20;
+  @apply sm:text-4xl text-2xl font-bold text-slate-800 text-center mb-16 tracking-tight;
 }
 
 .title-sm {
-  @apply text-3xl text-center text-gray-600 font-bold uppercase;
+  @apply text-2xl text-center text-slate-800 font-bold tracking-tight;
 }
 
 .side-title {
-  @apply text-xl sm:text-2xl mb-10 text-gray-600 font-bold uppercase;
+  @apply text-xl sm:text-2xl mb-10 text-slate-800 font-bold tracking-tight;
 }
 
 .duration {
-  @apply text-sm font-bold text-gray-400 px-2 py-1 ms-2 rounded-full bg-gray-100 inline;
+  @apply text-sm font-semibold text-primary px-3 py-1.5 ms-2 rounded-full bg-primary/10 inline;
 }
 
 .degree-name {
-  @apply text-xl font-bold text-gray-600 uppercase mb-2;
+  @apply text-lg font-bold text-slate-800 uppercase tracking-wide mb-2;
 }
 
 .university {
-  @apply text-lg font-semibold mb-3 text-gray-600;
+  @apply text-base font-semibold mb-3 text-slate-700;
 }
 
 .label-style {
-  @apply font-semibold sm:text-lg text-base text-gray-500;
+  @apply font-semibold sm:text-base text-sm text-slate-600;
 }
 
 .input-style {
-  @apply rounded-md text-sm sm:text-base w-full bg-gray-100 shadow-sm p-3 mt-1 focus:outline-none focus:ring focus:border-indigo-600;
+  @apply rounded-xl text-sm sm:text-base w-full bg-slate-50/80 border border-slate-200 p-3.5 mt-1.5 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-200;
 }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Glass effect utility */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #0d9488, #0f766e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+

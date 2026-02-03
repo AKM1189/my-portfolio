@@ -1,55 +1,55 @@
-
-const Hero = ({onAboutClick}) => {
+const Hero = ({ onAboutClick }) => {
   return (
-    // <section id="home" className="min-h-screen flex items-center">
-    //   <div className="grid lg:grid-cols-3 gap-5 px-10 lg:px-24">
-    //     <div className="image-container flex justify-center lg:col-span-1">
-    //       <img
-    //         className="rounded-full border-4 shadow-lg lg:w-2/3 w-2/3"
-    //         src="/my photo.jpg"
-    //         alt="Aung Kaung Myat"
-    //       />
-    //     </div>
-
-    //     <div className="intro lg:col-span-2 flex flex-col justify-center">
-    //       <h3 className="font-bold text-xl sm:text-3xl uppercase mb-3">
-    //         I'm <span className="text-indigo-600">Aung Kaung Myat</span>
-    //       </h3>
-    //       <p className="text-gray-700 mb-5">
-    //         I am an enthusiastic web developer with a passion for creating dynamic and accessible web applications. My self-learning attitude allows me to quickly adapt to new technologies and frameworks...
-    //       </p>
-    //       <a
-    //         href="#about"
-    //         className="bg-indigo-600 text-white px-4 py-2 rounded-full border border-indigo-600 hover:text-indigo-600 hover:bg-white transition duration-300"
-    //       >
-    //         About Me
-    //       </a>
-    //     </div>
-    //   </div>
-    // </section>
-    <div class="header grid grid-cols-3" id="header">
-                    <div class="image-container lg:col-span-1 col-span-3 p-5 flex justify-center">
-                        <div class="lg:w-2/3 w-2/3 ">
-                            <img class="rounded-full border-secondary border-4 shadow-lg" src="/my photo.jpg" alt="" />
-                        </div>
-                    </div>
-                    <div class="sm:col-span-1 lg:hidden"></div>
-                    <div class="intro grid lg:ps-20 ps-10 items-center float-right col-span-3 sm:col-span-2">
-                        <div class="intro-content">
-                            <h3 class="font-bold text-xl sm:text-xl mb-3">
-                                I'm <span class="text-indigo-600 uppercase">Aung Kaung Myat</span>
-                            </h3>
-                            <h3 class="role text-2xl sm:text-4xl text-gray-800 font-bold uppercase">FullStack Developer</h3>
-                            <p class="my-5 w-10/12 sm:w-2/3 pb-3 space-y-10 text-gray-700">
-                                I am an enthusiastic web developer with a passion for creating dynamic and accessible web applications. My self-learning attitude allows me to quickly adapt to new technologies and frameworks, making me an agile and versatile developer. I thrive on problem-solving
-                                and enjoy tackling challenges head-on. I am dedicated to making the web a more open and user-friendly space. I am actively seeking job opportunities that align with my skills and interests, where I can contribute, learn,
-                                and grow in a collaborative environment.
-                            </p>
-
-                            <button class="scroll-smooth smooth shadow-sm hover:shadow-primary bg-indigo-600 text-white px-4 py-2 rounded-full border border-indigo-600 cursor-pointer hover:text-indigo-600 hover:bg-white transition ease-in-out duration-300" onClick={onAboutClick}>About Me</button>
-              </div>
-            </div>
+    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-8rem)] px-6 md:px-12 lg:px-20 pt-24 lg:pt-32 pb-16">
+      <div className="order-2 lg:order-1 flex justify-center lg:justify-end">
+        <div className="relative">
+          <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 to-teal-400/20 rounded-full blur-2xl animate-pulse" />
+          <img
+            className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full border-4 border-white/20 shadow-2xl object-cover"
+            src="/my photo.jpg"
+            alt="Aung Kaung Myat"
+          />
+          <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-primary rounded-full flex items-center justify-center border-4 border-slate-900">
+            <span className="text-2xl">👋</span>
           </div>
+        </div>
+      </div>
+
+      <div className="order-1 lg:order-2 text-center lg:text-left">
+        <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">
+          FullStack Developer
+        </p>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+          I'm{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-cyan-200">
+            Aung Kaung Myat
+          </span>
+        </h1>
+        <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+          I am an enthusiastic web developer with a passion for creating dynamic and accessible web
+          applications. My self-learning attitude allows me to quickly adapt to new technologies and
+          frameworks, making me an agile and versatile developer.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <button
+            className="px-8 py-3.5 bg-primary hover:bg-teal-600 text-white font-semibold rounded-xl shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5"
+            onClick={onAboutClick}
+          >
+            About Me
+          </button>
+          <a
+            href="#projects"
+            className="px-8 py-3.5 border-2 border-white/30 hover:border-white/60 text-white font-semibold rounded-xl transition-all duration-300 hover:bg-white/10"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            View Projects
+          </a>
+        </div>
+      </div>
+    </div>
   );
 };
 
