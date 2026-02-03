@@ -1,0 +1,37 @@
+{
+    "projects": [
+        {
+            "title": "Vintage Rally Club",
+            "description": "This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers.",
+            "technologies": " HTML, CSS, Javascript",
+            "githubLink": "https://github.com/AKM1189/vintage-rally-car",
+            "previewLink": "https://akm1189.github.io/vintage-rally-car/",
+            "image": "/vintage_rally.png"
+        },
+         {
+            "title": "Vintage Rally Club",
+            "description": "This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers.",
+            "technologies": " HTML, CSS, Javascript",
+            "githubLink": "https://github.com/AKM1189/vintage-rally-car",
+            "previewLink": "https://akm1189.github.io/vintage-rally-car/",
+            "image": "/vintage_rally.png"
+        },
+         {
+            "title": "Vintage Rally Club",
+                       "description": "This is the first website I developed after learning the basics of web development. I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers. This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers.",
+
+            "technologies": " HTML, CSS, Javascript",
+            "githubLink": "https://github.com/AKM1189/vintage-rally-car",
+            "previewLink": "https://akm1189.github.io/vintage-rally-car/",
+            "image": "/vintage_rally.png"
+        },
+         {
+            "title": "Vintage Rally Club",
+            "description": "This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers. This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers.",
+            "technologies": " HTML, CSS, Javascript",
+            "githubLink": "https://github.com/AKM1189/vintage-rally-car",
+            "previewLink": "https://akm1189.github.io/vintage-rally-car/",
+            "image": "/vintage_rally.png"
+        }
+    ]
+}

@@ -8,17 +8,33 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="my-32 lg:px-24 px-5">
-      <h3 className="title mb-10">MY <span className="text-indigo-600">SERVICES</span></h3>
-      <div className="grid md:grid-cols-3 gap-10">
-        {services.map((service) => (
-          <div key={service.title} className="bg-gray-100 p-5 rounded-lg shadow hover:shadow-lg transition duration-300">
-            <h4 className="font-bold mb-3">{service.title}</h4>
-            <p>{service.desc}</p>
-          </div>
-        ))}
-      </div>
-    </section>
+    <section id="services" class="mb-40">
+            <div>
+                <h3 class="title">
+                    My <span class="text-indigo-600">Services</span>
+                </h3>
+            </div>
+            <div class="md:grid md:grid-cols-2 gap-10 mb-14 service-container">
+                <div class="bg-gray-50 p-10 rounded text-center mb-10 md:mb-0">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-laptop-code text-6xl text-indigo-600"></i>
+                    </div>
+                    <h4 class="font-bold text-2xl my-5">Frontend Development</h4>
+                    <p class="text-gray-500">
+                        I specialize in front-end development using React, Tailwind CSS, and Ant Design. With a focus on creating responsive and visually appealing user interfaces, I ensure optimal performance and accessibility.
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-10 rounded text-center">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-database text-6xl text-indigo-600"></i>
+                    </div>
+                    <h4 class="font-bold text-2xl my-5">Backend Development</h4>
+                    <p class="text-gray-500">
+                        I build robust applications using PHP and leverage Laravel for efficient, maintainable code. Skilled in designing and optimizing SQL databases, I ensure effective data management and high-quality solutions.
+                    </p>
+                </div>
+            </div>
+        </section>  
   );
 };
 

@@ -1,15 +1,19 @@
 {
     "skills": [
         {
-            "name": "HTML/CSS/Tailwind",
+            "name": "HTML/CSS",
             "level": 100
         },
          {
-            "name": "JavaScript/jquery/TypeScript",
+            "name": "Bootstrap/Tailwind",
+            "level": 100
+        },
+         {
+            "name": "JavaScript/jquery",
             "level": 90
         },
          {
-            "name": "React/Next",
+            "name": "React/Next/TypeScript",
             "level": 90
         },
         {
@@ -21,11 +25,11 @@
             "level": 90
         },
          {
-            "name": "SQL/MongoDB",
+            "name": "MySQL/PostgreSQL/MongoDB",
             "level": 90
         },
          {
-            "name": "Node/Express/Nest",
+            "name": "Node.js/Express.js/Nest.js",
             "level": 85
         },
         {

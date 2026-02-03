@@ -5,8 +5,8 @@ const Navbar = ({onNavClick}) => {
   const menus = ["Home", "About", "Skills", "Services", "Projects", "Contact"];
 
   return (
-    <div className="nav h-20 mb-20 transition-all duration-500">
-      <nav className="hidden md:flex justify-end items-center me-10 pt-5">
+    <div className="nav h-20 mb-20 transition-all duration-500 ">
+      <nav className="hidden md:flex justify-end items-center me-10 p-3 pe-0">
         <ul className="flex gap-5 me-10 text-lg *:p-3">
           <nav className="flex gap-10 p-5">
             {menus.map((item, index) => 

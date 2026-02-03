@@ -36,10 +36,10 @@ const Hero = ({onAboutClick}) => {
                     <div class="sm:col-span-1 lg:hidden"></div>
                     <div class="intro grid lg:ps-20 ps-10 items-center float-right col-span-3 sm:col-span-2">
                         <div class="intro-content">
-                            <h3 class="font-bold text-xl sm:text-3xl uppercase mb-3">
-                                I'm <span class="text-indigo-600">Aung Kaung Myat</span>
+                            <h3 class="font-bold text-xl sm:text-xl mb-3">
+                                I'm <span class="text-indigo-600 uppercase">Aung Kaung Myat</span>
                             </h3>
-                            <h3 class="role text-2xl sm:text-5xl font-bold uppercase"></h3>
+                            <h3 class="role text-2xl sm:text-4xl text-gray-800 font-bold uppercase">FullStack Developer</h3>
                             <p class="my-5 w-10/12 sm:w-2/3 pb-3 space-y-10 text-gray-700">
                                 I am an enthusiastic web developer with a passion for creating dynamic and accessible web applications. My self-learning attitude allows me to quickly adapt to new technologies and frameworks, making me an agile and versatile developer. I thrive on problem-solving
                                 and enjoy tackling challenges head-on. I am dedicated to making the web a more open and user-friendly space. I am actively seeking job opportunities that align with my skills and interests, where I can contribute, learn,
