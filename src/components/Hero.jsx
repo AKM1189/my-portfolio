@@ -18,7 +18,6 @@ const Hero = ({ onAboutClick }) => {
       </div>
 
       <div className="text-center lg:text-left">
-      <div className="text-center lg:text-left">
         <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">
           {MyInfo.position}
         </p>
@@ -29,10 +28,6 @@ const Hero = ({ onAboutClick }) => {
           </span>
         </h1>
         <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-          I am an enthusiastic web developer with a passion for creating dynamic
-          and accessible web applications. My self-learning attitude allows me
-          to quickly adapt to new technologies and frameworks, making me an
-          agile and versatile developer.
           I am an enthusiastic web developer with a passion for creating dynamic
           and accessible web applications. My self-learning attitude allows me
           to quickly adapt to new technologies and frameworks, making me an
@@ -50,9 +45,6 @@ const Hero = ({ onAboutClick }) => {
             className="px-8 py-3.5 border-2 border-white/30 hover:border-white/60 text-white font-semibold rounded-xl transition-all duration-300 hover:bg-white/10"
             onClick={(e) => {
               e.preventDefault();
-              document
-                .getElementById("projects")
-                ?.scrollIntoView({ behavior: "smooth" });
               document
                 .getElementById("projects")
                 ?.scrollIntoView({ behavior: "smooth" });
