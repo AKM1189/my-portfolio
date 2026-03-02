@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoClose } from "react-icons/io5";
 
-const Navbar = ({ onNavClick, scrolled }) => {
+const Navbar = ({ onNavClick, scrolled, activeSection }) => {
   const [open, setOpen] = useState(false);
   const menus = ["Home", "About", "Education", "Skills", "Services", "Projects", "Contact"];
 
@@ -20,16 +20,22 @@ const Navbar = ({ onNavClick, scrolled }) => {
       <ul className="hidden md:flex items-center gap-1">
         {menus.map((item) => (
           <li key={item}>
+            {(() => {
+              const key = item.toLowerCase() === "home" ? "hero" : item.toLowerCase();
+              const isActive = key === activeSection;
+              return (
             <button
-              className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                scrolled
-                  ? "text-slate-700 hover:text-primary hover:bg-primary/5"
-                  : "text-slate-200 hover:text-white hover:bg-white/10"
+              className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 border-b-2 ${
+              isActive
+                    ? "text-teal-200 border-teal-200 bg-white/10"
+                    : "text-slate-200 border-transparent hover:text-white hover:bg-white/10"
               }`}
               onClick={() => handleNavClick(item)}
             >
               {item}
             </button>
+              );
+            })()}
           </li>
         ))}
       </ul>
@@ -63,7 +69,11 @@ const Navbar = ({ onNavClick, scrolled }) => {
             {menus.map((item) => (
               <button
                 key={item}
-                className="text-2xl font-semibold text-white hover:text-primary transition-colors py-2"
+                className={`text-2xl font-semibold transition-colors py-2 ${
+                  (item.toLowerCase() === "home" ? "hero" : item.toLowerCase()) === activeSection
+                    ? "text-primary"
+                    : "text-white hover:text-primary"
+                }`}
                 onClick={() => handleNavClick(item)}
               >
                 {item}

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -8,10 +8,10 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
-import '@mantine/core/styles.css';
-import '@mantine/carousel/styles.css';
+import "@mantine/core/styles.css";
+import "@mantine/carousel/styles.css";
 
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider } from "@mantine/core";
 
 import "./App.css";
 import Education from "./components/Education";
@@ -23,6 +23,7 @@ import { FaArrowUp } from "react-icons/fa6";
 export default function App() {
   const sectionRefs = useRef({});
   const [scroll, scrollTo] = useWindowScroll();
+  const [activeSection, setActiveSection] = useState("hero");
 
   const scrollToSection = (section) => {
     sectionRefs.current[section]?.scrollIntoView({
@@ -31,6 +32,38 @@ export default function App() {
     });
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries.filter((entry) => entry.isIntersecting);
+        if (!visibleEntries.length) return;
+
+        const mostVisible = visibleEntries.sort(
+          (a, b) => b.intersectionRatio - a.intersectionRatio
+        )[0];
+
+        const matchedKey = Object.entries(sectionRefs.current).find(
+          ([, el]) => el === mostVisible.target
+        )?.[0];
+        if (matchedKey && (matchedKey !== activeSection || matchedKey === "hero")) {
+          setActiveSection(matchedKey);
+        }
+      },
+      {
+        root: null,
+        threshold: 0.4,
+      }
+    );
+
+    const elements = Object.values(sectionRefs.current);
+    elements.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <MantineProvider>
       <div className="bg-slate-50 text-slate-900 scroll-smooth font-[family-name:var(--font-sans)]">
@@ -38,12 +71,16 @@ export default function App() {
         <div
           className={twMerge(
             "w-screen transition-all duration-500 fixed top-0 left-0 z-50",
-            scroll.y > 300
-              ? "bg-white/95 shadow-lg border-b border-slate-200"
-              : "bg-transparent"
+            scroll.y > 100
+              ? "bg-gradient-to-r text-white from-slate-900 via-slate-800 to-teal-900 shadow-lg"
+              : "bg-transparent",
           )}
         >
-          <Navbar onNavClick={scrollToSection} scrolled={scroll.y > 300} />
+          <Navbar
+            onNavClick={scrollToSection}
+            scrolled={scroll.y > 100}
+            activeSection={activeSection}
+          />
         </div>
 
         {/* Hero section with gradient background */}

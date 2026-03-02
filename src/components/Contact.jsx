@@ -1,4 +1,6 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import SectionTitle from "./SectionTitle";
+import { MyInfo } from "../constants";
 
 const Contact = () => {
   const contacts = [
@@ -9,7 +11,7 @@ const Contact = () => {
         </svg>
       ),
       label: "Phone",
-      value: "(+95) 94522 435 31",
+      value: MyInfo.phone,
     },
     {
       icon: (
@@ -18,7 +20,7 @@ const Contact = () => {
         </svg>
       ),
       label: "Email",
-      value: "akm.dev.me@gmail.com",
+      value: MyInfo.email,
       href: "mailto:akm.dev.me@gmail.com",
     },
     {
@@ -29,16 +31,14 @@ const Contact = () => {
         </svg>
       ),
       label: "Address",
-      value: "Yangon, Myanmar",
+      value: MyInfo.address,
     },
   ];
 
   return (
     <section id="contact" className="py-20">
       <div className="max-w-5xl mx-auto">
-        <h2 className="title">
-          Contact <span className="gradient-text">Me</span>
-        </h2>
+        <SectionTitle highlight="ContactMe" subtitle="Let's connect and discuss your next project. I'm always looking for new opportunities and collaborations." />
 
         <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 p-8 md:p-12 border border-slate-100">
           <div className="grid lg:grid-cols-2 gap-12">

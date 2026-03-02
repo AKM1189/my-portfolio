@@ -1,4 +1,5 @@
 import data from "../../data/education.json";
+import SectionTitle from "./SectionTitle";
 
 const Education = () => {
   const { education } = data;
@@ -6,9 +7,7 @@ const Education = () => {
   return (
     <section id="education" className="py-20">
       <div className="max-w-5xl mx-auto">
-        <h2 className="title">
-          My <span className="gradient-text">Education</span>
-        </h2>
+        <SectionTitle highlight="Education" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {education.map((item, index) => (

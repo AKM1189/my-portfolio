@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { MyInfo } from "../constants";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -7,7 +8,7 @@ const Footer = () => {
     <footer className="bg-slate-900 text-slate-300 py-12">
       <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <p className="text-center md:text-left text-sm">
-          © {year} Aung Kaung Myat. All rights reserved.
+          © {year} {MyInfo.name}. All rights reserved.
         </p>
         <div className="flex gap-4">
           <a

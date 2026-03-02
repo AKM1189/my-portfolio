@@ -66,9 +66,6 @@ function ProjectCard({ project }) {
               ))}
             </div>
           </div>
-          <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-300">
-            <FaArrowUpRightFromSquare className="text-primary text-sm" />
-          </div>
         </div>
 
         {/* Content section */}
@@ -89,7 +86,7 @@ function ProjectCard({ project }) {
                 className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary border border-slate-200 rounded-lg hover:border-primary/30 transition-colors"
               >
                 <FaGithub className="text-base" />
-                Code
+                {/* Code */}
               </a>
             )}
             {project.previewLink && (
@@ -101,7 +98,7 @@ function ProjectCard({ project }) {
                 className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
               >
                 <FaArrowUpRightFromSquare className="text-sm" />
-                Live
+                {/* Live */}
               </a>
             )}
           </div>
@@ -121,13 +118,15 @@ function ProjectCard({ project }) {
         radius="xl"
         padding="xl"
         classNames={{
+          root: "hide-scrollbar",
+          body: "hide-scrollbar",
           content: "border border-slate-100 shadow-2xl",
-          header: "border-b border-slate-100",
+          header: "border-b h-16 border-slate-100",
         }}
       >
-        <Stack gap="lg">
+        <Stack gap="lg" pt={20}>
           <div className="rounded-xl overflow-hidden border border-slate-100">
-            <Image src={project.image} alt={project.title} className="object-cover" h={220} />
+            <Image src={project.image} alt={project.title} className="object-cover" h={250} />
           </div>
 
           <div>
@@ -154,29 +153,33 @@ function ProjectCard({ project }) {
 
           <Group justify="flex-end" gap="sm" mt="md">
             {project.githubLink && (
-              <Button
+              <a
                 variant="outline"
                 component="a"
                 href={project.githubLink}
                 target="_blank"
                 size="sm"
                 radius="md"
-                className="border-primary text-primary hover:bg-primary hover:text-white"
+                // className="border-primary text-primary hover:bg-primary hover:text-white"
+                className="inline-flex !text-primary items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-600 hover:!text-primary border !border-slate-200 rounded-lg hover:!border-primary/30 transition-colors"
+              //  className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
               >
                 GitHub
-              </Button>
+              </a>
             )}
             {project.previewLink && (
-              <Button
+              <a
                 component="a"
                 href={project.previewLink}
                 target="_blank"
                 size="sm"
                 radius="md"
-                className="bg-primary hover:bg-primary-dark"
+                // className="bg-primary hover:bg-primary-dark"
+                // className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary border border-slate-200 rounded-lg hover:border-primary/30 transition-colors"
+ className="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium !bg-primary text-white rounded-lg hover:!bg-primary/90 transition-colors"
               >
                 Live Preview
-              </Button>
+              </a>
             )}
           </Group>
         </Stack>

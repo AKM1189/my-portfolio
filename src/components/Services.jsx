@@ -1,3 +1,5 @@
+import SectionTitle from "./SectionTitle";
+
 const Services = () => {
   const services = [
     {
@@ -25,10 +27,10 @@ const Services = () => {
   return (
     <section id="services" className="py-20">
       <div className="max-w-5xl mx-auto">
-        <h2 className="title">
-          My <span className="gradient-text">Services</span>
-        </h2>
-
+        <SectionTitle
+          highlight="What I Offer"
+          subtitle="Professional services tailored to help brands scale and dominate in the digital space."
+        />
         <div className="grid md:grid-cols-2 gap-8">
           {services.map((service, index) => (
             <div

@@ -1,16 +1,23 @@
-import data from "../../data/about.json";
+import SectionTitle from "./SectionTitle";
+import { MyInfo } from "../constants";
 
 const About = () => {
-  const { about } = data;
+  const about = [
+    {label: "Name", value: MyInfo.name},
+    {label: "Date of Birth", value: MyInfo.dateOfBirth},
+    {label: "Language", value: MyInfo.language},
+    {label: "Phone", value: MyInfo.phone},
+    {label: "Email", value: MyInfo.email},
+    {label: "Address", value: MyInfo.address},
+    {label: "Experience", value: MyInfo.experience},
+  ]
   const experience = about.filter((item) => item.label === "Experience")[0]?.value ?? 0;
   const personalInfo = about.filter((item) => item.label !== "Experience");
 
   return (
     <section id="about-me" className="pt-24 pb-20">
       <div className="max-w-5xl mx-auto">
-        <h2 className="title">
-          About <span className="gradient-text">Me</span>
-        </h2>
+        <SectionTitle highlight="About Me" />
 
         <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 p-8 md:p-12 border border-slate-100">
           <h3 className="side-title text-lg mb-8">Personal Information</h3>

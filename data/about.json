@@ -2,7 +2,7 @@
     "about": [
         {
             "label": "Name",
-            "value": "Aung Kaung Myat"
+            "value": "${MyInfo.name}"
         },
         {
             "label": "Date of Birth",
