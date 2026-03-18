@@ -11,7 +11,7 @@ const Education = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {education.map((item, index) => (
-            <EducationCard key={index} data={item} index={index} />
+            <EducationCard key={index} data={item} />
           ))}
         </div>
       </div>
@@ -19,7 +19,7 @@ const Education = () => {
   );
 };
 
-const EducationCard = ({ data, index }) => {
+const EducationCard = ({ data }) => {
   return (
     <div className="group relative bg-white rounded-2xl p-8 border border-slate-100 shadow-lg shadow-slate-100 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 hover:border-primary/20 overflow-hidden">
       <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full" />
@@ -56,3 +56,5 @@ const EducationCard = ({ data, index }) => {
 };
 
 export default Education;
+
+

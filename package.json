@@ -11,17 +11,12 @@
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
-    "@mantine/carousel": "^8.3.13",
-    "@mantine/core": "^8.3.13",
-    "@mantine/hooks": "^8.3.13",
     "@tailwindcss/vite": "^4.1.18",
-    "embla-carousel": "^8.6.0",
-    "embla-carousel-autoplay": "^8.6.0",
-    "embla-carousel-react": "^8.6.0",
+    "framer-motion": "^12.38.0",
     "react": "^19.2.0",
-    "react-awesome-reveal": "^4.3.1",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
+    "resend": "^6.9.4",
     "scroll-into-view": "^1.16.2",
     "scrollreveal": "^4.0.9",
     "tailwind-merge": "^3.4.0",
@@ -38,8 +33,6 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "postcss": "^8.5.6",
-    "postcss-preset-mantine": "^1.18.0",
-    "postcss-simple-vars": "^7.0.1",
     "vite": "^7.2.4"
   }
 }
