@@ -4,23 +4,43 @@ const Services = () => {
   const services = [
     {
       icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        <svg
+          className="w-12 h-12"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+          />
         </svg>
       ),
       title: "Frontend Development",
       description:
-        "I specialize in front-end development using React, Tailwind CSS, and Ant Design. With a focus on creating responsive and visually appealing user interfaces, I ensure optimal performance and accessibility.",
+        "I build modern, scalable user interfaces using React and Next.js, styled with Tailwind CSS. I focus on performance, clean component architecture, and seamless user experience, ensuring responsive and maintainable applications.",
     },
     {
       icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+        <svg
+          className="w-12 h-12"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+          />
         </svg>
       ),
       title: "Backend Development",
       description:
-        "I build robust applications using PHP and leverage Laravel for efficient, maintainable code. Skilled in designing and optimizing SQL databases, I ensure effective data management and high-quality solutions.",
+        "I develop scalable backend systems using NestJS and Express, with PostgreSQL and Prisma for efficient data handling. I also work with Redis for caching and real-time features, and design microservice-based architectures for reliable and maintainable systems.",
     },
   ];
 
@@ -42,8 +62,12 @@ const Services = () => {
                 <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-4">{service.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{service.description}</p>
+                <h3 className="text-xl font-bold text-slate-800 mb-4">
+                  {service.title}
+                </h3>
+                <p className="text-slate-600 leading-relaxed">
+                  {service.description}
+                </p>
               </div>
             </div>
           ))}

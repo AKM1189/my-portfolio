@@ -3,15 +3,16 @@ import { MyInfo } from "../constants";
 
 const About = () => {
   const about = [
-    {label: "Name", value: MyInfo.name},
-    {label: "Date of Birth", value: MyInfo.dateOfBirth},
-    {label: "Language", value: MyInfo.language},
-    {label: "Phone", value: MyInfo.phone},
-    {label: "Email", value: MyInfo.email},
-    {label: "Address", value: MyInfo.address},
-    {label: "Experience", value: MyInfo.experience},
-  ]
-  const experience = about.filter((item) => item.label === "Experience")[0]?.value ?? 0;
+    { label: "Name", value: MyInfo.name },
+    { label: "Date of Birth", value: MyInfo.dateOfBirth },
+    { label: "Language", value: MyInfo.language },
+    { label: "Phone", value: MyInfo.phone },
+    { label: "Email", value: MyInfo.email },
+    { label: "Address", value: MyInfo.address },
+    { label: "Experience", value: MyInfo.experience },
+  ];
+  const experience =
+    about.filter((item) => item.label === "Experience")[0]?.value ?? 0;
   const personalInfo = about.filter((item) => item.label !== "Experience");
 
   return (
@@ -24,21 +25,31 @@ const About = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {personalInfo.slice(0, 6).map((item) => (
-              <InfoItem key={item.label} label={item.label} value={item.value} />
+              <InfoItem
+                key={item.label}
+                label={item.label}
+                value={item.value}
+              />
             ))}
           </div>
 
-          <div className="mt-12 pt-8 border-t border-slate-100">
+          {/* <div className="mt-12 pt-8 border-t border-slate-100">
             <div className="flex items-center gap-6">
               <div className="flex-shrink-0 w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-teal-600 flex items-center justify-center shadow-lg shadow-primary/30">
-                <span className="text-4xl font-bold text-white">{experience}+</span>
+                <span className="text-4xl font-bold text-white">
+                  {experience}+
+                </span>
               </div>
               <div>
-                <p className="text-2xl font-bold text-slate-800">Years of Experience</p>
-                <p className="text-slate-500 mt-1">Building web applications and growing with technology</p>
+                <p className="text-2xl font-bold text-slate-800">
+                  Years of Experience
+                </p>
+                <p className="text-slate-500 mt-1">
+                  Building web applications and growing with technology
+                </p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

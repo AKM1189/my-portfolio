@@ -92,7 +92,7 @@ const Skills = () => {
 
         <div className="mt-12 pt-8 border-t border-slate-100 flex justify-center">
           <a
-            href="./cv/AUNG KAUNG MYAT.pdf"
+            href="/my_cv.pdf"
             download="Aung Kaung Myat CV"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800 transition-colors"
           >
