@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowDown, FaArrowRight } from "react-icons/fa6";
 import { MyInfo } from "../constants";
 import { fadeInScale, fadeInUp, staggerContainer } from "../utils/motion";
 
@@ -56,13 +56,12 @@ const Hero = ({ onNavigate }) => {
           </MotionP>
 
           <MotionDiv variants={fadeInUp} className="mt-8 flex flex-wrap gap-3">
-            <button
-              className="inline-flex items-center gap-2 text-white! rounded-full bg-[image:var(--app-primary-gradient)] px-5 py-3 text-sm font-semibold text-slate-950 transition-transform duration-300 hover:-translate-y-0.5"
-              onClick={() => onNavigate("projects")}
-            >
-              View My Work
-              <FaArrowRight className="text-xs" />
-            </button>
+            <a href="/akm_cv.pdf" download="AungKaungMyat_CV.pdf">
+              <button className="inline-flex items-center gap-2 text-white! rounded-full bg-[image:var(--app-primary-gradient)] px-5 py-3 text-sm font-semibold text-slate-950 transition-transform duration-300 hover:-translate-y-0.5">
+                Download CV
+                <FaArrowDown className="text-xs" />
+              </button>
+            </a>
             <button
               className="rounded-full bg-app-panel-alt px-5 py-3 text-sm font-semibold text-white transition-colors transition-transform duration-300 hover:-translate-y-0.5"
               onClick={() => onNavigate("contact")}
