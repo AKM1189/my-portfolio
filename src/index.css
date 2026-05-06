@@ -1,121 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0d9488;
-  --color-primary-light: #14b8a6;
-  --color-primary-dark: #0f766e;
-  --color-accent: #f59e0b;
-  --color-accent-light: #fbbf24;
-  --color-secondary: #e2e8f0;
-  --color-text-muted: #64748b;
-  --bg-gradient-hero: linear-gradient(
+  --font-sans: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Space Grotesk", "Inter", "Segoe UI", "Helvetica Neue", Arial,
+    sans-serif;
+  --color-app-bg: #071122;
+  --color-app-surface: #081224;
+  --color-app-panel: #111f3d;
+  --color-app-panel-alt: #162646;
+  --color-app-panel-alt-hover: #162660;
+  --color-app-panel-dark: #0b1528;
+  --color-app-panel-deep: #050d1c;
+  --color-app-chip: #10213d;
+  --color-app-line: #243550;
+  --color-app-primary: #30c5d2;
+  --color-app-primary-strong: #103783;
+  --color-app-primary-soft: #7fdfff;
+  --color-app-muted: #94a3b8;
+  --color-app-muted-soft: #64748b;
+  --color-app-text: #f8fafc;
+}
+
+:root {
+  --app-primary-gradient: linear-gradient(
     135deg,
-    #0f172a 0%,
-    #1e293b 40%,
-    #0d9488 100%
+    var(--color-app-primary) 0%,
+    var(--color-app-primary-strong) 100%
   );
-  --bg-gradient-subtle: linear-gradient(
-    180deg,
-    #f8fafc 0%,
-    #f1f5f9 100%
-  );
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --app-shell-overlay:
+    radial-gradient(circle at top, rgba(54, 199, 255, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(7, 17, 34, 0.96), rgba(5, 13, 28, 1));
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
+  margin: 0;
+  background: var(--color-app-bg);
+  color: var(--color-app-text);
   font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.nav ul li {
-  @apply font-semibold text-slate-500 hover:text-primary cursor-pointer p-3 transition-colors;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.info-name {
-  @apply font-semibold text-slate-500;
+button {
+  cursor: pointer;
 }
 
-.info-value {
-  @apply text-slate-700 ms-2;
+#root {
+  min-height: 100vh;
 }
 
-.title {
-  @apply sm:text-4xl text-2xl font-bold text-slate-800 text-center mb-16 tracking-tight;
+::selection {
+  background: rgba(54, 199, 255, 0.24);
+  color: #ecfeff;
 }
 
-.title-sm {
-  @apply text-2xl text-center text-slate-800 font-bold tracking-tight;
-}
-
-.side-title {
-  @apply text-xl sm:text-2xl mb-10 text-slate-800 font-bold tracking-tight;
-}
-
-.duration {
-  @apply text-sm font-semibold text-primary px-3 py-1.5 ms-2 rounded-full bg-primary/10 inline;
-}
-
-.degree-name {
-  @apply text-lg font-bold text-slate-800 uppercase tracking-wide mb-2;
-}
-
-.university {
-  @apply text-base font-semibold mb-3 text-slate-700;
-}
-
-.label-style {
-  @apply font-semibold sm:text-base text-sm text-slate-600;
-}
-
-.input-style {
-  @apply rounded-xl text-sm sm:text-base w-full bg-slate-50/80 border border-slate-200 p-3.5 mt-1.5 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-200;
-}
-
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
-  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--color-app-surface);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #94a3b8;
-  border-radius: 4px;
+  background: var(--color-app-line);
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: var(--color-app-muted-soft);
 }
 
-/* Glass effect utility */
-.glass {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #0d9488, #0f766e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* For Webkit-based browsers (Chrome, Safari, Opera, new Edge) */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none !important;
-}
-
-/* For IE, old Edge, and Firefox */
 .hide-scrollbar {
-  -ms-overflow-style: none !important;  /* IE and Edge */
-  scrollbar-width: none !important;     /* Firefox */
+  scrollbar-width: none;
 }
 
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

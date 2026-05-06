@@ -2,52 +2,121 @@
   "projects": [
     {
       "title": "Recipe Sharing System",
-      "description": "This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers.",
-      "technologies": " HTML, CSS, Javascript",
-      "githubLink": "https://github.com/AKM1189/vintage-rally-car",
-      "previewLink": "https://akm1189.github.io/vintage-rally-car/",
-      "image": "/vintage_rally.png"
+      "technologies": "Next.js, Nest.js, PostgreSQL, Prisma",
+      "description": "Developed a full-stack recipe platform where I implemented features for creating, updating, and deleting recipes, along with user interactions such as favorites, ratings, and reviews with replies. Designed and integrated REST APIs using NestJS and managed relational data with PostgreSQL, while building a responsive UI with Next.js.",
+      "role": "Full-Stack Developer",
+      "tagline": "Community-first recipe platform with structured content workflows, ratings, and review conversations.",
+      "features": [
+        {
+          "title": "Recipe Publishing Flow",
+          "description": "Created full CRUD flows for recipes with clean API contracts and responsive front-end handling.",
+          "tone": "primary",
+          "icon": "bolt"
+        },
+        {
+          "title": "Rich User Interactions",
+          "description": "Added favorites, ratings, and threaded review replies to make the platform feel active and social.",
+          "tone": "tertiary",
+          "icon": "users"
+        },
+        {
+          "title": "Relational Data Design",
+          "description": "Modeled connected recipe, review, and user data in PostgreSQL for reliable querying and updates.",
+          "tone": "muted",
+          "icon": "database"
+        }
+      ],
+      "githubLink": "https://github.com/AKM1189/recipe-sharing-system-frontend",
+      "previewLink": "https://recipixa.vercel.app",
+      "image": "/gemini_recipe_sharing.png"
     },
     {
       "title": "Movie Ticket Booking System",
-      "description": "This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers.",
-      "technologies": " HTML, CSS, Javascript",
-      "githubLink": "https://github.com/AKM1189/vintage-rally-car",
-      "previewLink": "https://akm1189.github.io/vintage-rally-car/",
-      "image": "/vintage_rally.png"
+      "technologies": "React.js, Express.js, Socket.io, MySQL, TypeORM",
+      "description": "Built a real-time movie booking application where I implemented seat selection with Socket.io to ensure synchronized availability across users. Developed backend APIs using Node.js/Express, handled authentication with JWT, and created admin functionalities for managing movies, schedules, and bookings.",
+      "role": "Full-Stack Developer",
+      "tagline": "Real-time cinema booking experience with synchronized seat selection and operational admin tooling.",
+      "features": [
+        {
+          "title": "Live Seat Availability",
+          "description": "Used Socket.io to keep seat states synchronized across users during active booking sessions.",
+          "tone": "primary",
+          "icon": "signal"
+        },
+        {
+          "title": "Secure Admin Workflows",
+          "description": "Implemented JWT-based authentication and protected dashboards for movies, schedules, and bookings.",
+          "tone": "tertiary",
+          "icon": "shield"
+        },
+        {
+          "title": "Booking Operations",
+          "description": "Structured APIs and database flows to support the full reservation lifecycle from browsing to checkout.",
+          "tone": "muted",
+          "icon": "code"
+        }
+      ],
+      "githubLink": "https://github.com/AKM1189/ticket-booking-frontend",
+      "previewLink": "https://moviepalacecinema.vercel.app/",
+      "image": "/gemini_movie_ticketing.png"
     },
     {
       "title": "E-Tutoring System",
-      "description": "This is the first website I developed after learning the basics of web development. I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers. This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers.",
-
-      "technologies": " HTML, CSS, Javascript",
-      "githubLink": "https://github.com/AKM1189/vintage-rally-car",
-      "previewLink": "https://akm1189.github.io/vintage-rally-car/",
-      "image": "/vintage_rally.png"
+      "description": "Worked on the frontend of an admin dashboard where I developed interfaces for managing students, teachers, and staff, and implemented features for assigning teachers to students using Next.js.",
+      "technologies": "Next.js, Shadcn, Zustand, Axios",
+      "role": "Front-End Developer",
+      "tagline": "Administrative dashboard experience designed for education workflows and staff coordination.",
+      "features": [
+        {
+          "title": "Operations Dashboard UI",
+          "description": "Built clean interfaces for handling students, teachers, and staff records inside a structured admin environment.",
+          "tone": "primary",
+          "icon": "layout"
+        },
+        {
+          "title": "Assignment Flows",
+          "description": "Implemented teacher-to-student assignment interactions with clarity around form actions and status handling.",
+          "tone": "tertiary",
+          "icon": "users"
+        },
+        {
+          "title": "Scalable Front-End Patterns",
+          "description": "Used reusable Next.js patterns to keep the dashboard maintainable as features expanded.",
+          "tone": "muted",
+          "icon": "sparkles"
+        }
+      ],
+      "githubLink": "https://github.com/AKM1189/etutor-frontend",
+      "image": "/gemini_e_tutor.png"
     },
     {
       "title": "Restaurant Food Ordering System",
-      "description": "This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers. This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers.",
-      "technologies": " HTML, CSS, Javascript",
-      "githubLink": "https://github.com/AKM1189/vintage-rally-car",
-      "previewLink": "https://akm1189.github.io/vintage-rally-car/",
-      "image": "/vintage_rally.png"
-    },
-    {
-      "title": "Global Wild Swimming and Camping",
-      "description": "This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers. This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers.",
-      "technologies": " HTML, CSS, Javascript",
-      "githubLink": "https://github.com/AKM1189/vintage-rally-car",
-      "previewLink": "https://akm1189.github.io/vintage-rally-car/",
-      "image": "/vintage_rally.png"
-    },
-    {
-      "title": "Vintage Rally Club",
-      "description": "This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers. This is the first website I developed after learning the basics of web development. It is a static website for displaying vintage rally cars and drivers.",
-      "technologies": " HTML, CSS, Javascript",
-      "githubLink": "https://github.com/AKM1189/vintage-rally-car",
-      "previewLink": "https://akm1189.github.io/vintage-rally-car/",
-      "image": "/vintage_rally.png"
+      "description": "Developed a multi-panel restaurant management system that streamlines order handling, kitchen workflows, and inventory control. Built features for waiters to manage tables and orders, kitchen staff to process requests, and admins to handle inventory and suppliers.",
+      "technologies": "HTML, CSS, Bootstrap, jQuery, Laravel, MySQL",
+      "role": "Full-Stack Developer",
+      "tagline": "End-to-end restaurant workflow system connecting service, kitchen operations, and inventory management.",
+      "features": [
+        {
+          "title": "Waiter Ordering Panel",
+          "description": "Enabled waiters to select tables, add menu items, and place orders efficiently with a user-friendly interface.",
+          "tone": "primary",
+          "icon": "layout"
+        },
+        {
+          "title": "Kitchen Processing System",
+          "description": "Built a real-time workflow for kitchen staff to view, manage, and update order statuses for smooth food preparation.",
+          "tone": "tertiary",
+          "icon": "users"
+        },
+        {
+          "title": "Inventory & Supplier Management",
+          "description": "Implemented admin features for managing raw materials, tracking stock, and handling supplier purchases and manufacturing processes.",
+          "tone": "muted",
+          "icon": "sparkles"
+        }
+      ],
+      "githubLink": "https://github.com/AKM1189/order-taking-system",
+      "image": "/gemini_restaurant_ordering.png"
     }
   ]
 }

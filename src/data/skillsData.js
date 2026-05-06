@@ -6,14 +6,14 @@ export const skillsByCategory = [
       { name: "JavaScript/jQuery", level: 88 },
       { name: "React/Next/TypeScript", level: 87 },
       { name: "Ant Design/Mantine/Shadcn", level: 84 },
-      { name: "Redux/Zustand/TanStack Query", level: 86 },
+      { name: "Zustand/TanStack Query", level: 86 },
     ],
   },
   {
     title: "Backend & Data",
     skills: [
       { name: "Node.js/Express/Nest.js", level: 84 },
-      { name: "MySQL/PostgreSQL/MongoDB", level: 82 },
+      { name: "MySQL/PostgreSQL", level: 82 },
       { name: "TypeORM/Prisma", level: 80 },
       { name: "Redis", level: 75 },
     ],

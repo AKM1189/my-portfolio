@@ -1,96 +1,135 @@
 import { useState } from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { motion } from "framer-motion";
+import {
+  FaEnvelope,
+  FaLocationDot,
+  FaPaperPlane,
+  FaPhone,
+} from "react-icons/fa6";
 import SectionTitle from "./SectionTitle";
 import { MyInfo } from "../constants";
+import { fadeInScale, fadeInUp, staggerContainer } from "../utils/motion";
 
 const initialForm = {
   name: "",
   email: "",
+  subject: "",
   message: "",
+};
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const validateForm = (values) => {
+  const errors = {};
+
+  if (!values.name.trim()) {
+    errors.name = "Please enter your name.";
+  } else if (values.name.trim().length < 2) {
+    errors.name = "Name should be at least 2 characters.";
+  }
+
+  if (!values.email.trim()) {
+    errors.email = "Please enter your email address.";
+  } else if (!emailPattern.test(values.email.trim())) {
+    errors.email = "Please enter a valid email address.";
+  }
+
+  if (values.subject.trim() && values.subject.trim().length < 3) {
+    errors.subject = "Subject should be at least 3 characters.";
+  }
+
+  if (!values.message.trim()) {
+    errors.message = "Please enter a message.";
+  } else if (values.message.trim().length < 16) {
+    errors.message = "Message should be at least 16 characters.";
+  }
+
+  return errors;
 };
 
 const Contact = () => {
   const [formData, setFormData] = useState(initialForm);
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const [status, setStatus] = useState({ type: "idle", message: "" });
   const [sending, setSending] = useState(false);
-
-  const contacts = [
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-          />
-        </svg>
-      ),
-      label: "Phone",
-      value: MyInfo.phone,
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-          />
-        </svg>
-      ),
-      label: "Email",
-      value: MyInfo.email,
-      href: `mailto:${MyInfo.email}`,
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-          />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      ),
-      label: "Address",
-      value: MyInfo.address,
-    },
-  ];
+  const MotionDiv = motion.div;
+  const MotionButton = motion.button;
 
   const onInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const nextValues = { ...formData, [name]: value };
+    setFormData(nextValues);
+
+    if (touched[name]) {
+      setErrors(validateForm(nextValues));
+    }
+  };
+
+  const onFieldBlur = (event) => {
+    const { name } = event.target;
+    const nextTouched = { ...touched, [name]: true };
+    setTouched(nextTouched);
+    setErrors(validateForm(formData));
   };
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    setSending(true);
+
+    const validationErrors = validateForm(formData);
+    setTouched({
+      name: true,
+      email: true,
+      subject: true,
+      message: true,
+    });
+    setErrors(validationErrors);
     setStatus({ type: "idle", message: "" });
 
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+
+    setSending(true);
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result?.error || "Unable to send message right now.");
+      const rawBody = await response.text();
+      let result = null;
+
+      if (rawBody) {
+        try {
+          result = JSON.parse(rawBody);
+        } catch {
+          result = null;
+        }
       }
 
-      setStatus({ type: "success", message: "Message sent successfully. I will get back to you soon." });
+      if (!response.ok) {
+        throw new Error(
+          result?.error ||
+            "Unable to send message right now. Please try again in a moment.",
+        );
+      }
+
+      setStatus({
+        type: "success",
+        message:
+          result?.message ||
+          "Message sent successfully. I will get back to you soon.",
+      });
       setFormData(initialForm);
+      setErrors({});
+      setTouched({});
     } catch (error) {
       setStatus({
         type: "error",
-        message: error.message || "Something went wrong while sending your message.",
+        message:
+          error.message || "Something went wrong while sending your message.",
       });
     } finally {
       setSending(false);
@@ -98,134 +137,169 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20">
-      <div className="max-w-5xl mx-auto">
-        <SectionTitle
-          highlight="ContactMe"
-          subtitle="Let's connect and discuss your next project. I'm always looking for new opportunities and collaborations."
-        />
+    <MotionDiv
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.18 }}
+      className="px-1 py-4 sm:px-2 sm:py-6"
+    >
+      <SectionTitle
+        title="Get in"
+        highlight="Touch"
+        subtitle="Open to thoughtful products, strong teams, and well-scoped collaborations."
+      />
 
-        <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 p-8 md:p-12 border border-slate-100">
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-slate-800 mb-8">Get in Touch</h3>
-
-              <div className="space-y-6">
-                {contacts.map((item) => (
-                  <div key={item.label} className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <p className="font-semibold text-slate-600 text-sm">{item.label}</p>
-                      {item.href ? (
-                        <a href={item.href} className="text-slate-800 font-medium hover:text-primary transition-colors">
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-slate-800 font-medium">{item.value}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
+      <div className="grid gap-5 lg:grid-cols-[0.6fr_1.4fr]">
+        <MotionDiv variants={fadeInScale} className="space-y-4">
+          <div className="rounded-[1.15rem] bg-app-panel p-5">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500">
+              Direct
+            </p>
+            <div className="mt-4 space-y-3">
+              <div className="flex items-center gap-3 text-slate-200">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-app-panel-dark text-app-primary">
+                  <FaEnvelope />
+                </span>
+                <p className="text-sm font-medium">{MyInfo.email}</p>
               </div>
-
-              <div className="flex gap-4 mt-8">
-                <a
-                  href="https://github.com/akm1189"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-colors"
-                  aria-label="GitHub"
-                >
-                  <FaGithub className="text-xl" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/aung-kaung-myat1189/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedin className="text-xl" />
-                </a>
+              <div className="flex items-center gap-3 text-slate-200">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-app-panel-dark text-app-primary">
+                  <FaPhone />
+                </span>
+                <p className="text-sm font-medium">{MyInfo.phone}</p>
               </div>
-            </div>
-
-            <div>
-              <form id="contact-form" className="space-y-5" onSubmit={onSubmit}>
-                <div>
-                  <label htmlFor="name" className="label-style block mb-1">
-                    Name
-                  </label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    className="input-style"
-                    placeholder="Your Name"
-                    required
-                    value={formData.name}
-                    onChange={onInputChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="label-style block mb-1">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    className="input-style"
-                    placeholder="akm@example.com"
-                    required
-                    value={formData.email}
-                    onChange={onInputChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="label-style block mb-1">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    className="input-style min-h-[120px] resize-y"
-                    placeholder="Your message..."
-                    rows={4}
-                    required
-                    value={formData.message}
-                    onChange={onInputChange}
-                  />
-                </div>
-
-                {status.type !== "idle" && (
-                  <p
-                    className={
-                      status.type === "success"
-                        ? "text-sm text-emerald-600 font-medium"
-                        : "text-sm text-rose-600 font-medium"
-                    }
-                  >
-                    {status.message}
-                  </p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={sending}
-                  className="w-full py-3.5 px-6 bg-primary hover:bg-primary-dark disabled:opacity-70 disabled:cursor-not-allowed text-white font-semibold rounded-xl shadow-lg shadow-primary/30 hover:shadow-xl transition-all duration-300"
-                >
-                  {sending ? "Sending..." : "Send Message"}
-                </button>
-              </form>
             </div>
           </div>
-        </div>
+
+          <div className="rounded-[1.15rem] bg-app-panel p-5">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500">
+              Location
+            </p>
+            <div className="mt-4 flex items-center gap-3 text-slate-200">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-app-panel-dark text-app-primary">
+                <FaLocationDot />
+              </span>
+              <p className="text-sm font-medium text-white">{MyInfo.address}</p>
+            </div>
+          </div>
+        </MotionDiv>
+
+        <MotionDiv
+          variants={fadeInScale}
+          className="rounded-[1.15rem] bg-app-panel p-5 sm:p-6"
+        >
+          <form className="space-y-4" onSubmit={onSubmit} noValidate>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field
+                label="Name"
+                id="name"
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={onInputChange}
+                onBlur={onFieldBlur}
+                placeholder="John Doe"
+                error={touched.name ? errors.name : ""}
+              />
+              <Field
+                label="Email"
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={onInputChange}
+                onBlur={onFieldBlur}
+                placeholder="john@example.com"
+                error={touched.email ? errors.email : ""}
+              />
+            </div>
+
+            <Field
+              label="Subject"
+              id="subject"
+              name="subject"
+              type="text"
+              value={formData.subject}
+              onChange={onInputChange}
+              onBlur={onFieldBlur}
+              placeholder="Project inquiry"
+              error={touched.subject ? errors.subject : ""}
+            />
+
+            <div>
+              <label
+                htmlFor="message"
+                className="text-[10px] uppercase tracking-[0.2em] text-slate-500"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={onInputChange}
+                onBlur={onFieldBlur}
+                rows={5}
+                placeholder="Tell me about the role or project."
+                className={`mt-2 min-h-[140px] w-full rounded-xl bg-app-panel-dark px-4 py-3 text-sm text-white outline-none ring-1 placeholder:text-slate-500 ${
+                  touched.message && errors.message
+                    ? "ring-rose-400/60"
+                    : "ring-white/6 focus:ring-app-primary/40"
+                }`}
+                aria-invalid={Boolean(touched.message && errors.message)}
+              />
+              {touched.message && errors.message && (
+                <p className="mt-2 text-sm text-rose-400">{errors.message}</p>
+              )}
+            </div>
+
+            {status.type !== "idle" && (
+              <p
+                className={
+                  status.type === "success"
+                    ? "text-sm text-emerald-400"
+                    : "text-sm text-rose-400"
+                }
+              >
+                {status.message}
+              </p>
+            )}
+
+            <MotionButton
+              variants={fadeInUp}
+              type="submit"
+              disabled={sending}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[image:var(--app-primary-gradient)] px-5 py-3 text-sm font-semibold text-slate-950 disabled:opacity-70"
+            >
+              <FaPaperPlane className="text-xs" />
+              {sending ? "Sending..." : "Send Message"}
+            </MotionButton>
+          </form>
+        </MotionDiv>
       </div>
-    </section>
+    </MotionDiv>
   );
 };
+
+const Field = ({ label, id, error, ...props }) => (
+  <div>
+    <label
+      htmlFor={id}
+      className="text-[10px] uppercase tracking-[0.2em] text-slate-500"
+    >
+      {label}
+    </label>
+    <input
+      id={id}
+      className={`mt-2 w-full rounded-xl bg-app-panel-dark px-4 py-3 text-sm text-white outline-none ring-1 placeholder:text-slate-500 ${
+        error ? "ring-rose-400/60" : "ring-white/6 focus:ring-app-primary/40"
+      }`}
+      aria-invalid={Boolean(error)}
+      {...props}
+    />
+    {error && <p className="mt-2 text-sm text-rose-400">{error}</p>}
+  </div>
+);
 
 export default Contact;

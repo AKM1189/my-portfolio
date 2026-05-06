@@ -1,33 +1,25 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import { MyInfo } from "../constants";
-
 const Footer = () => {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="bg-slate-900 text-slate-300 py-12">
-      <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        <p className="text-center md:text-left text-sm">
-          © {year} {MyInfo.name}. All rights reserved.
-        </p>
-        <div className="flex gap-4">
+    <footer className="px-4 pb-8 pt-2 sm:px-6 lg:px-10">
+      <div className="mx-auto flex max-w-[72rem] flex-col items-center justify-between gap-4 text-[10px] uppercase tracking-[0.18em] text-slate-500 sm:flex-row">
+        <div className="flex items-center gap-2">
+          <span className="font-bold text-white">AKM</span>
+          <span>© 2026 Aung Kaung Myat. Engineered with precision.</span>
+        </div>
+        <div className="flex items-center gap-5">
           <a
-            href="https://github.com/akm1189"
+            href="https://github.com/AKM1189"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-            aria-label="GitHub"
           >
-            <FaGithub />
+            GitHub
           </a>
           <a
             href="https://www.linkedin.com/in/aung-kaung-myat1189/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-            aria-label="LinkedIn"
           >
-            <FaLinkedin />
+            LinkedIn
           </a>
         </div>
       </div>

@@ -1,37 +1,37 @@
 {
-    "skills": [
-        {
-            "name": "HTML/CSS"
-        },
-         {
-            "name": "Bootstrap/Tailwind"
-        },
-         {
-            "name": "JavaScript/jquery"
-        },
-         {
-            "name": "React/Next/TypeScript"
-        },
-        {
-            "name": "AntDesign/Mantine/Shadcn"
-        },
-        {
-            "name": "Redux/Zustand/TanStack Query"
-        },
-         {
-            "name": "MySQL/PostgreSQL/MongoDB"
-        },
-         {
-            "name": "Node.js/Express.js/Nest.js"
-        },
-        {
-            "name": "Docker"
-        },
-        {
-            "name": "Redis"
-        },
-         {
-            "name": "Git/GitHub"
-        }
-    ]
+  "skills": [
+    {
+      "name": "HTML/CSS"
+    },
+    {
+      "name": "Bootstrap/Tailwind"
+    },
+    {
+      "name": "JavaScript/jquery"
+    },
+    {
+      "name": "React/Next/TypeScript"
+    },
+    {
+      "name": "AntDesign/Mantine/Shadcn"
+    },
+    {
+      "name": "Redux/Zustand/TanStack Query"
+    },
+    {
+      "name": "MySQL/PostgreSQL"
+    },
+    {
+      "name": "Node.js/Express.js/Nest.js"
+    },
+    {
+      "name": "Docker"
+    },
+    {
+      "name": "Redis"
+    },
+    {
+      "name": "Git/GitHub"
+    }
+  ]
 }

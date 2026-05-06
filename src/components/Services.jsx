@@ -1,79 +1,54 @@
 import SectionTitle from "./SectionTitle";
 
-const Services = () => {
-  const services = [
-    {
-      icon: (
-        <svg
-          className="w-12 h-12"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-          />
-        </svg>
-      ),
-      title: "Frontend Development",
-      description:
-        "I build modern, scalable user interfaces using React and Next.js, styled with Tailwind CSS. I focus on performance, clean component architecture, and seamless user experience, ensuring responsive and maintainable applications.",
-    },
-    {
-      icon: (
-        <svg
-          className="w-12 h-12"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
-          />
-        </svg>
-      ),
-      title: "Backend Development",
-      description:
-        "I develop scalable backend systems using NestJS and Express, with PostgreSQL and Prisma for efficient data handling. I also work with Redis for caching and real-time features, and design microservice-based architectures for reliable and maintainable systems.",
-    },
-  ];
+const services = [
+  {
+    number: "01",
+    title: "Interface craft",
+    description:
+      "I build responsive interfaces that feel credible, premium, and ready to represent a product well.",
+  },
+  {
+    number: "02",
+    title: "Full-stack execution",
+    description:
+      "I can move from front-end implementation into APIs, data-driven features, and back-end logic without losing consistency.",
+  },
+  {
+    number: "03",
+    title: "Product thinking",
+    description:
+      "I care about outcomes, not just output, which means design, code quality, and user clarity all matter in the final result.",
+  },
+];
 
+const Services = () => {
   return (
-    <section id="services" className="py-20">
-      <div className="max-w-5xl mx-auto">
-        <SectionTitle
-          highlight="What I Offer"
-          subtitle="Professional services tailored to help brands scale and dominate in the digital space."
-        />
-        <div className="grid md:grid-cols-2 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="group relative bg-white rounded-2xl p-10 border border-slate-100 shadow-lg shadow-slate-100 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative">
-                <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                  {service.icon}
+    <div className="mx-auto max-w-7xl">
+      <div className="section-frame rounded-[2rem] px-6 py-16 sm:px-8 lg:px-12">
+        <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+          <SectionTitle
+            eyebrow="Services"
+            title="The value I bring"
+            highlight="to modern product teams."
+            subtitle="I contribute where visual polish, technical structure, and reliable delivery all need to meet."
+          />
+
+          <div className="grid gap-6">
+            {services.map((service) => (
+              <article key={service.title} className="grid gap-5 rounded-[1.7rem] bg-white/[0.04] p-7 md:grid-cols-[96px_1fr]">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.06] font-[family-name:var(--font-display)] text-2xl text-[#e7d8bf]">
+                  {service.number}
                 </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-slate-600 leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            </div>
-          ))}
+                <div>
+                  <h3 className="text-2xl font-semibold text-white">{service.title}</h3>
+                  <p className="mt-4 leading-8 text-stone-300">{service.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

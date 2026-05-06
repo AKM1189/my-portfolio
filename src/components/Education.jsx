@@ -1,54 +1,47 @@
-import data from "../../data/education.json";
+import data from "../../data/experience.json";
 import SectionTitle from "./SectionTitle";
 
 const Education = () => {
   const { education } = data;
 
   return (
-    <section id="education" className="py-20">
-      <div className="max-w-5xl mx-auto">
-        <SectionTitle highlight="Education" />
+    <div className="mx-auto max-w-7xl">
+      <div className="section-frame rounded-[2rem] px-6 py-16 sm:px-8 lg:px-12">
+        <SectionTitle
+          eyebrow="Education"
+          title="A background built through"
+          highlight="structured learning and applied practice."
+          subtitle="My education moved from engineering into computing and software, creating a mix of analytical thinking, technical training, and collaborative project experience."
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid gap-6 lg:grid-cols-2">
           {education.map((item, index) => (
-            <EducationCard key={index} data={item} />
+            <article
+              key={`${item.title}-${item.years}`}
+              className="rounded-[1.7rem] bg-white/[0.04] p-7"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#e7d8bf]">
+                    Stage {index + 1}
+                  </p>
+                  <h3 className="mt-4 font-[family-name:var(--font-display)] text-3xl text-white">
+                    {item.title}
+                  </h3>
+                </div>
+                <span className="rounded-full bg-white/[0.05] px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-stone-300">
+                  {item.years}
+                </span>
+              </div>
+
+              <p className="mt-4 text-sm font-medium uppercase tracking-[0.24em] text-stone-400">
+                {item.location}
+              </p>
+              <p className="mt-6 leading-8 text-stone-300">
+                {item.description.trim()}
+              </p>
+            </article>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const EducationCard = ({ data }) => {
-  return (
-    <div className="group relative bg-white rounded-2xl p-8 border border-slate-100 shadow-lg shadow-slate-100 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 hover:border-primary/20 overflow-hidden">
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full" />
-
-      <div className="relative flex gap-6">
-        <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-7 h-7 text-primary"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"
-            />
-          </svg>
-        </div>
-
-        <div className="flex-1 min-w-0">
-          <h3 className="degree-name">{data.title}</h3>
-          <div className="flex flex-wrap items-center gap-2 mt-2 mb-3">
-            <span className="university">{data.location}</span>
-            <span className="duration">{data.years}</span>
-          </div>
-          <p className="text-slate-600 leading-relaxed">{data.description}</p>
         </div>
       </div>
     </div>
@@ -56,5 +49,3 @@ const EducationCard = ({ data }) => {
 };
 
 export default Education;
-
-

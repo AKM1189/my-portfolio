@@ -1,0 +1,22 @@
+{
+  "experience": [
+    {
+      "title": "Electrical Power Engineering",
+      "location": "Thanlyin Technological University",
+      "years": "2017 - 2020",
+      "description": "I studied Electrical Engineering for three years, where I developed strong analytical and problem-solving skills. This technical foundation has enhanced my ability to approach challenges in web development with a systematic mindset."
+    },
+    {
+      "title": "B.Sc (Hons) Computing",
+      "location": "University of Greenwich, KMD Institute",
+      "years": "2022 - 2025",
+      "description": "I completed the Bacher degree in Computing, where I gained knowledge and developed Android applications, Movie Ticket Booking System, and a web-based group project. This program equipped me with the skills to coorporate with team members, enhancing my ability to deliver robust web applications."
+    },
+    {
+      "title": "Junior React Developer",
+      "location": "Digital Base Company",
+      "years": "2025 - 2026",
+      "description": "I worked as a Junior React Developer, building scalable and responsive web applications using React and Next.js. Collaborated with backend teams to integrate APIs and improve application performance. Gained hands-on experience in state management, modern frontend architectures, and delivering user-friendly interfaces in a professional development environment."
+    }
+  ]
+}

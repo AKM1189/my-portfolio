@@ -1,68 +1,78 @@
-import SectionTitle from "./SectionTitle";
+import { motion } from "framer-motion";
 import { MyInfo } from "../constants";
+import SectionTitle from "./SectionTitle";
+import { fadeInScale, staggerContainer } from "../utils/motion";
 
 const About = () => {
-  const about = [
-    { label: "Name", value: MyInfo.name },
-    { label: "Date of Birth", value: MyInfo.dateOfBirth },
-    { label: "Language", value: MyInfo.language },
-    { label: "Phone", value: MyInfo.phone },
-    { label: "Email", value: MyInfo.email },
-    { label: "Address", value: MyInfo.address },
-    { label: "Experience", value: MyInfo.experience },
-  ];
-  const experience =
-    about.filter((item) => item.label === "Experience")[0]?.value ?? 0;
-  const personalInfo = about.filter((item) => item.label !== "Experience");
+  const MotionDiv = motion.div;
+  const MotionArticle = motion.article;
 
   return (
-    <section id="about-me" className="pt-24 pb-20">
-      <div className="max-w-5xl mx-auto">
-        <SectionTitle highlight="About Me" />
+    <MotionDiv
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      className="px-1 py-4 sm:px-2 sm:py-6"
+    >
+      <SectionTitle
+        eyebrow="About"
+        title="Built with"
+        highlight="precision"
+        subtitle="Product-minded, detail-focused, and comfortable working across both UI and application logic."
+      />
 
-        <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 p-8 md:p-12 border border-slate-100">
-          <h3 className="side-title text-lg mb-8">Personal Information</h3>
+      <div className="grid gap-5 lg:grid-cols-[1fr_1.1fr]">
+        <MotionArticle
+          variants={fadeInScale}
+          className="rounded-[1.2rem] bg-app-panel p-6"
+        >
+          <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400">
+            Profile
+          </p>
+          <div className="mt-5 space-y-4 text-sm text-slate-300">
+            <InfoRow label="Name" value={MyInfo.name} />
+            <InfoRow label="Location" value={MyInfo.address} />
+            <InfoRow label="Languages" value={MyInfo.language} />
+            <InfoRow label="Experience" value={`${MyInfo.experience}+ years`} />
+          </div>
+        </MotionArticle>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {personalInfo.slice(0, 6).map((item) => (
-              <InfoItem
-                key={item.label}
-                label={item.label}
-                value={item.value}
-              />
+        <MotionArticle
+          variants={fadeInScale}
+          className="rounded-[1.2rem] bg-app-surface p-6"
+        >
+          <p className="text-[10px] uppercase tracking-[0.2em] text-app-primary">
+            Approach
+          </p>
+          <p className="mt-5 text-sm leading-8 text-slate-300">
+            I focus on products that feel polished, communicate clearly, and
+            stay maintainable as they grow.
+          </p>
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {MyInfo.focus.map((item) => (
+              <div
+                key={item}
+                className="rounded-xl bg-app-chip px-4 py-4 text-sm text-white"
+              >
+                {item}
+              </div>
             ))}
           </div>
-
-          {/* <div className="mt-12 pt-8 border-t border-slate-100">
-            <div className="flex items-center gap-6">
-              <div className="flex-shrink-0 w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-teal-600 flex items-center justify-center shadow-lg shadow-primary/30">
-                <span className="text-4xl font-bold text-white">
-                  {experience}+
-                </span>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-slate-800">
-                  Years of Experience
-                </p>
-                <p className="text-slate-500 mt-1">
-                  Building web applications and growing with technology
-                </p>
-              </div>
-            </div>
-          </div> */}
-        </div>
+        </MotionArticle>
       </div>
-    </section>
+    </MotionDiv>
   );
 };
+
+const InfoRow = ({ label, value }) => (
+  <div className="flex items-start justify-between gap-4 border-b border-white/6 pb-3 last:border-b-0 last:pb-0">
+    <span className="text-[11px] uppercase tracking-[0.18em] text-slate-500">
+      {label}
+    </span>
+    <span className="text-right text-white">{value}</span>
+  </div>
+);
 
 export default About;
-
-const InfoItem = ({ label, value }) => {
-  return (
-    <div className="flex flex-col gap-1">
-      <span className="info-name text-sm">{label}</span>
-      <span className="info-value font-medium text-slate-800">{value}</span>
-    </div>
-  );
-};
